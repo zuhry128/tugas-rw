@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>login page</title>
+</head>
+
+<body class="h-screen flex flex-col justify-center">
+  <main>
+
+    <div class="container m-6 mx-auto justify-center">
+      <div id="welcome-sign">
+        <h1 class="text-4xl font-semibold text-center">Register an account</h1>
+      </div>
+      <form method="post" id="login_form" class="flex flex-col w-64 mx-auto gap-6 mt-6" action="#">
+        <input type="text" name="newUsername" placeholder="username" class="rounded shadow h-12 p-2">
+        <input type="text" name="newEmail" placeholder="email" class="rounded shadow h-12 p-2">
+        <input type="text" name="newPhone" placeholder="phone" class="rounded shadow h-12 p-2">
+        <input type="password" name="newPassword" placeholder="password" class="rounded shadow h-12 p-2">
+        <input type="submit" placeholder="register" class="rounded bg-green-400 h-12">
+        <a class="text-center" href="{{url_for('login')}}">already have an account ?</a>
+      </form>
+    </div>
+
+  </main>
+</body>
+
+</html>

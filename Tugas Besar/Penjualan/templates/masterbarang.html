@@ -1,0 +1,97 @@
+{% include 'header.html' %}
+
+  <!-- masterbarang-->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Master Barang</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item">
+                <a href="/inputBarang">Tambah</a></li>
+              <li class="breadcrumb-item active">
+                <a href="/masterbarang">Data</a></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content-header -->
+<!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table class="table table-bordered">
+                  <thead>                  
+                    <tr align="center">
+                      <th style="width: 10px">No</th>
+                      <th>Nama</th>
+                      <th>Jenis</th>
+                      <th>Jumlah</th>
+                      <th colspan="2">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for items in rv %}
+                    <tr >
+                      <td align="center">{{ loop.index }}</td>
+                      <td>{{ items.1 }}</td>
+                      <td>{{ items.2 }}</td>
+                      <td align="center">{{ items.3 }}</td>
+                      <td><a href="/edit/{{ items.0 }}" class="btn btn-info" data-toggle="modal" data-target="#modalEdit{{ items.0 }}"  role="button"><i class="fas fa-edit"></i></a></td>
+                      <td><a href="/delete/{{ items.0 }}" class="btn btn-danger" role="button" onclick="return confirm('Yakin ingin dihapus?')" action="/delete"><i class="fas fa-trash-alt"></i></a></td>
+                    </tr>
+
+                    <div id="modalEdit{{ items.0 }}" class="modal fade" role="dialog">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            
+                            <h4 class="text-center" style="text-align:center;">Edit Data</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          </div>
+                          <div class="modal-body">
+                            <form action="{{ url_for('edit')}}" method="POST">
+                              <div class="form-group">
+                                <label>Nama Barang   :</label>
+                                <input type="hidden"  name="id" value="{{ items.0 }}">
+                                <input type="text" class="form-control" name="namaBarang" value="{{ items.1 }}">
+                              </div>
+                              <div class="form-group">
+                                <label>Jenis Barang  :</label>
+                                <input type="text" class="form-control" name="jenisBarang" value="{{ items.2 }}">
+                              </div>
+                              <div>
+                                <label>Jumlah Barang :</label>
+                                <input type="text" class="form-control" name="jumlahBarang" value="{{ items.3 }}">
+                              </div>
+                              <div class="card-footer text-right">
+                                <button type="submit" class="btn btn-info bg-primary" onclick="return confirm('Simpan Perubahan?')">Save</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  
+  <!-- /.content-wrapper -->
+  {% include 'footer.html' %}

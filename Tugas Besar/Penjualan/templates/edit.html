@@ -1,0 +1,35 @@
+{% include 'header.html' %}
+
+  <!-- Content Wrapper. Contains page content -->
+  <div id="modalEdit" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Data</h4>
+        </div>
+        <div class="modal-body">
+          <form action="{{ url_for('edit')}}" method="POST">
+            <div class="form-group">
+              <label>Nama Barang</label>
+              <input type="hidden" name="id" value="{{ row.0 }}">
+              <input type="text" class="form-control" name="namaBarang" value="{{ items.1 }}">
+              <input type="text" class="form-control" name="jenisBarang" value="{{ items.2 }}">
+              <input type="text" class="form-control" name="jumlahBarang" value="{{ items.3 }}">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="moda">Close</button>
+        </div>
+      </div>
+    </div>
+    <!-- /.content-header -->
+<!-- Main content -->
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {% include 'footer.html' %}
